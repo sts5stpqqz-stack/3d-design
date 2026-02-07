@@ -24,34 +24,29 @@
     body {
       background: var(--background);
       color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     header {
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem 1rem;
       display: flex;
       justify-content: center;
-      align-items: center;
     }
 
     header img {
       max-width: 180px;
-      height: auto;
     }
 
     main {
-      flex: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 2rem 1.5rem;
     }
 
     .hero {
       max-width: 900px;
       text-align: center;
+      margin-bottom: 4rem;
     }
 
     .hero h1 {
@@ -68,33 +63,21 @@
     }
 
     .cta {
-      display: inline-block;
       padding: 0.85rem 1.75rem;
       border-radius: 999px;
       background: var(--primary);
       color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: none;
+      cursor: pointer;
     }
 
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-
-    footer {
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-  
     .portfolio, .contact {
+      width: 100%;
       max-width: 1000px;
-      margin: 4rem auto 0;
-      padding: 0 1.5rem;
       text-align: center;
+      margin-bottom: 4rem;
     }
 
     .portfolio h2, .contact h2 {
@@ -105,7 +88,7 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
     }
 
@@ -114,8 +97,8 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      font-weight: 600;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .portfolio-card img {
@@ -150,24 +133,35 @@
       border-color: var(--primary);
     }
 
+    footer {
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
   </style>
 </head>
+
 <body>
+  <!-- LOGO -->
   <header>
-    <!-- Replace src with the correct path to your uploaded image -->
     <img src="images/IMG_8768.png" alt="311 Designs Logo" />
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
       <h1>Designs Built With Purpose</h1>
       <p>
-        3D design, precise scanning, and high‑quality printing—delivering custom, functional, and visually striking creations powered by creativity, craftsmanship, and cutting‑edge tech.
+        3D design, precise scanning, and high-quality printing—delivering custom,
+        functional, and visually striking creations powered by creativity,
+        craftsmanship, and cutting-edge tech.
       </p>
       <a href="#contact" class="cta">Work With Us</a>
     </section>
 
-    <section class="portfolio" id="portfolio">
+    <!-- PORTFOLIO -->
+    <section class="portfolio">
       <h2>Portfolio</h2>
       <div class="portfolio-grid">
         <div class="portfolio-card">
@@ -183,10 +177,9 @@
           <span>Project Three</span>
         </div>
       </div>
-        <div class="portfolio-card">Project Two</div>
-        <div class="portfolio-card">Project Three</div>
     </section>
 
+    <!-- CONTACT -->
     <section class="contact" id="contact">
       <h2>Contact Us</h2>
       <form class="contact-form" action="https://formspree.io/f/xojnqkay" method="POST">
