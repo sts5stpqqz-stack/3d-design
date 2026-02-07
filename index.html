@@ -33,7 +33,7 @@
     }
 
     header img {
-      max-width: 180px;
+      max-width: 160px;
     }
 
     main {
@@ -41,12 +41,21 @@
       flex-direction: column;
       align-items: center;
       padding: 2rem 1.5rem;
+      gap: 4rem;
     }
 
-    .hero {
-      max-width: 900px;
+    section {
+      width: 100%;
+      max-width: 1000px;
       text-align: center;
-      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero h1 {
@@ -56,10 +65,12 @@
     }
 
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       line-height: 1.6;
       color: var(--muted);
       margin-bottom: 2rem;
+      max-width: 700px;
+      margin-inline: auto;
     }
 
     .cta {
@@ -71,13 +82,6 @@
       font-weight: 600;
       border: none;
       cursor: pointer;
-    }
-
-    .portfolio, .contact {
-      width: 100%;
-      max-width: 1000px;
-      text-align: center;
-      margin-bottom: 4rem;
     }
 
     .portfolio h2, .contact h2 {
@@ -99,6 +103,7 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       color: var(--muted);
       font-weight: 600;
+      cursor: pointer;
     }
 
     .portfolio-card img {
@@ -127,62 +132,71 @@
       font-size: 1rem;
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
     footer {
       padding: 1.5rem;
       text-align: center;
       font-size: 0.9rem;
       color: var(--muted);
     }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
   </style>
 </head>
-
 <body>
-  <!-- LOGO -->
   <header>
-    <img src="images/IMG_8768.png" alt="311 Designs Logo" />
+    <!-- Replace src with the correct path to your uploaded image -->
+    <img src="B4349956-983C-48C8-B21A-6149012EC1F7.png" alt="311 Designs Logo" />
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
       <h1>Designs Built With Purpose</h1>
       <p>
-        3D design, precise scanning, and high-quality printing—delivering custom,
-        functional, and visually striking creations powered by creativity,
-        craftsmanship, and cutting-edge tech.
+        311 Designs creates clean, modern visuals and digital experiences
+        that help brands stand out and communicate clearly.
       </p>
       <a href="#contact" class="cta">Work With Us</a>
     </section>
 
-    <!-- PORTFOLIO -->
-    <section class="portfolio">
+    <section class="portfolio" id="portfolio">
       <h2>Portfolio</h2>
       <div class="portfolio-grid">
         <div class="portfolio-card">
-          <img src="images/fusion 360 website.png" alt="Project One" />
+          <img src="https://via.placeholder.com/400x250" alt="Project One" />
           <span>Project One</span>
         </div>
         <div class="portfolio-card">
-          <img src="images/Screenshot 2026-02-07 173557.png" alt="Project Two" />
+          <img src="https://via.placeholder.com/400x250" alt="Project Two" />
           <span>Project Two</span>
         </div>
         <div class="portfolio-card">
-          <img src="images/thumbnail.png" alt="Project Three" />
+          <img src="https://via.placeholder.com/400x250" alt="Project Three" />
           <span>Project Three</span>
         </div>
       </div>
+        <div class="portfolio-card">Project Two</div>
+        <div class="portfolio-card">Project Three</div>
+      </div>
     </section>
 
-    <!-- CONTACT -->
     <section class="contact" id="contact">
       <h2>Contact Us</h2>
-      <form class="contact-form" action="https://formspree.io/f/xojnqkay" method="POST">
+      <form class="contact-form" action="https://formspree.io/f/yourFormID" method="POST">
         <input type="text" placeholder="Your Name" required />
         <input type="email" placeholder="Your Email" required />
         <textarea rows="4" placeholder="Tell us about your project" required></textarea>
@@ -196,6 +210,39 @@
   </footer>
 
   <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded portfolio image" />
+  </div>
+
+  <script>
+    // Fade-in on scroll
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    document.querySelectorAll('.portfolio-card img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
