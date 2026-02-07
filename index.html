@@ -155,11 +155,26 @@
       max-height: 90%;
       border-radius: 12px;
     }
+
+    /* ✨ Success message styling + fade-in animation */
+    #form-status {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      color: var(--primary);
+    }
+
+    #form-status.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
   <header>
-    <!-- Replace src with the correct path to your uploaded image -->
     <img src="images/IMG_8768.png" alt="311 Designs Logo" />
   </header>
 
@@ -189,81 +204,12 @@
         </div>
     </section>
 
-   <section class="contact" id="contact">
-  <h2>Contact Us</h2>
-  <form id="contact-form" class="contact-form">
-    <p id="form-status"></p>
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" rows="4" placeholder="Tell us about your project" required></textarea>
-    <button type="submit" class="cta">Send Message</button>
-  </form>
-</section>
-
-  </main>
-
-  <footer>
-    © <span id="year"></span> 311 Designs. All rights reserved.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Expanded portfolio image" />
-  </div>
-
-  <script>
-    // Fade-in on scroll
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-
-    sections.forEach(section => observer.observe(section));
-
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-
-    document.querySelectorAll('.portfolio-card img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-  <script>
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = new FormData(form);
-
-    const response = await fetch("https://formspree.io/f/xojnqkay", {
-      method: "POST",
-      body: data,
-      headers: { "Accept": "application/json" }
-    });
-
-    if (response.ok) {
-      status.textContent = "Thanks! Your message has been sent.";
-      form.reset();
-    } else {
-      status.textContent = "Oops! Something went wrong. Try again.";
-    }
-  });
-</script> 
-</body>
-</html>
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <form id="contact-form" class="contact-form">
+        <p id="form-status"></p>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="4" placeholder="Tell us about your project" required></textarea>
+        <button type="submit" class="cta">Send Message</button>
+      </form>
