@@ -565,9 +565,8 @@ function Footer() {
   return (
     <footer className="bg-background border-t border-border py-12">
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-3">
-          <img src={logoPath} alt="311 Designs" className="h-6 w-auto grayscale opacity-50" />
-          <span className="font-serif font-bold text-lg tracking-wide text-muted-foreground">311 DESIGNS</span>
+        <div className="flex items-center">
+          <img src={logoRingPath} alt="311 Designs" className="h-12 w-auto opacity-80" />
         </div>
         <p className="text-sm font-mono text-muted-foreground/60">
           &copy; {new Date().getFullYear()} 311 Designs. All rights reserved.

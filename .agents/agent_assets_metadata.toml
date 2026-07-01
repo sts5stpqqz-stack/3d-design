@@ -29,3 +29,9 @@ id = "a4P2ja2F1YUwELFy9GZOm"
 uri = "file://attached_assets/311designs_logo_export.png"
 type = "image"
 title = "311 Designs Logo (gradient ring, transparent background)"
+
+[[outputs]]
+id = "gdUjZQUqFyVzNzVwnIKw9"
+uri = "file://attached_assets/311designs-github-pages.tar.gz"
+type = "unspecified"
+title = "311 Designs — GitHub Pages build"
