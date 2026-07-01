@@ -87,7 +87,23 @@ function Hero() {
           transition={{ duration: 0.7 }}
           className="mb-8"
         >
-          <img src={logoNoBgPath} alt="311 Designs Studio" className="h-36 md:h-48 w-auto mx-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.25)]" />
+          <div
+            style={{
+              WebkitMaskImage: `url(${logoNoBgPath})`,
+              maskImage: `url(${logoNoBgPath})`,
+              WebkitMaskSize: "contain",
+              maskSize: "contain",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              WebkitMaskPosition: "center",
+              maskPosition: "center",
+              background: "linear-gradient(to right, hsl(211 29% 45%), #93c5fd)",
+              filter: "drop-shadow(0 0 20px rgba(147,197,253,0.3))",
+            }}
+            className="h-36 md:h-48 w-48 md:w-72 mx-auto"
+            role="img"
+            aria-label="311 Designs Studio"
+          />
         </motion.div>
 
         <motion.div 
