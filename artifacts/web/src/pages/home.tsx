@@ -95,7 +95,7 @@ function Hero() {
               width: "fit-content",
             }}
           >
-            <div className="rounded-full flex items-center justify-center p-5 md:p-6" style={{ background: "hsl(var(--background))" }}>
+            <div className="rounded-full flex items-center justify-center p-2 md:p-3" style={{ background: "hsl(var(--background))" }}>
               <div
                 style={{
                   WebkitMaskImage: `url(${logoNoBgPath})`,
