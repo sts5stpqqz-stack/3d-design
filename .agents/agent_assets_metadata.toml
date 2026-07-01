@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "5nO59pjG_c_O_eRODCSpD"
+uri = "file://artifacts/web/public/images/hero-bg.png"
+type = "image"
+title = "Hero background abstract metal"
+
+[[generated]]
+id = "grvV5E-eEXH3IDicMvSnO"
+uri = "file://artifacts/web/public/images/portfolio-scan.png"
+type = "image"
+title = "3D scanning process"
+
+[[generated]]
+id = "Ow41fL7qy0rfLd0HmUNZb"
+uri = "file://artifacts/web/public/images/portfolio-cad.png"
+type = "image"
+title = "Custom CAD Design"
+
+[[generated]]
+id = "HKDEFXZgJrqtliEbhNVKJ"
+uri = "file://artifacts/web/public/images/portfolio-fusion.png"
+type = "image"
+title = "Fusion360 Modelling"
