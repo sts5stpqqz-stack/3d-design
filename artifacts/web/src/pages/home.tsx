@@ -455,14 +455,28 @@ function Contact() {
     defaultValues: { name: "", email: "", message: "" },
   });
 
-  function onSubmit(data: z.infer<typeof contactSchema>) {
-    console.log(data);
-    toast({
-      title: "Message Sent",
-      description: "We've received your inquiry and will be in touch shortly.",
-      duration: 5000,
-    });
-    form.reset();
+  async function onSubmit(data: z.infer<typeof contactSchema>) {
+    try {
+      const res = await fetch("https://formspree.io/f/xojnqkay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Network response was not ok");
+      toast({
+        title: "Message Sent",
+        description: "We've received your inquiry and will be in touch shortly.",
+        duration: 5000,
+      });
+      form.reset();
+    } catch {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email us directly.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
   }
 
   return (
