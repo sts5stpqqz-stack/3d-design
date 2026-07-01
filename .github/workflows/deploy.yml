@@ -43,3 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: artifacts/web/dist/public
           force_orphan: true
+          cname: 311designs.co.uk
