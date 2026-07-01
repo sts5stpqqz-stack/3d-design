@@ -12,6 +12,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/311designs_logo.png";
 import logoNoBgPath from "@assets/311designs_logo_nobg.png";
+import logoRingPath from "@assets/311designs_logo_ring.png";
 
 const FADE_UP = {
   initial: { opacity: 0, y: 30 },
@@ -49,9 +50,8 @@ function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3 shadow-sm" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <img src={logoPath} alt="311 Designs" className="h-8 w-auto drop-shadow-md" />
-          <span className="font-serif font-bold text-xl tracking-wide text-foreground">311 DESIGNS</span>
+        <div className="flex items-center">
+          <img src={logoRingPath} alt="311 Designs" className="h-12 w-auto drop-shadow-md" />
         </div>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
