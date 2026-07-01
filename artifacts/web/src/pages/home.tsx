@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/311designs_logo.png";
 import logoNoBgPath from "@assets/311designs_logo_nobg.png";
 import logoRingPath from "@assets/311designs_logo_ring.png";
+import logoTrimmedPath from "@assets/311designs_logo_trimmed.png";
 
 const FADE_UP = {
   initial: { opacity: 0, y: 30 },
@@ -34,66 +35,27 @@ const ITEM = {
   transition: { duration: 0.5 }
 };
 
-const GRAD_ID_NAV = "lgNav";
-const GRAD_ID_FOOTER = "lgFooter";
 
-function LogoLockup({ gradId, opacity = 1 }: { gradId: string; opacity?: number }) {
+function LogoLockup({ opacity = 1 }: { opacity?: number }) {
   return (
-    <div className="flex items-center gap-3" style={{ opacity }}>
-      <svg height="36" viewBox="0 0 44 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(211,29%,45%)" />
-            <stop offset="100%" stopColor="#93c5fd" />
-          </linearGradient>
-        </defs>
-        {/* Outer gem outline */}
-        <polygon
-          points="22,1 40,12 40,30 22,41 4,30 4,12"
-          stroke={`url(#${gradId})`}
-          strokeWidth="1.5"
-          fill="none"
-        />
-        {/* Upper facet */}
-        <polygon points="22,1 40,12 22,18 4,12" fill={`url(#${gradId})`} opacity="0.45" />
-        {/* Left facet */}
-        <polygon points="4,12 22,18 4,30" fill={`url(#${gradId})`} opacity="0.2" />
-        {/* Right facet */}
-        <polygon points="40,12 40,30 22,18" fill={`url(#${gradId})`} opacity="0.35" />
-        {/* Lower-left facet */}
-        <polygon points="4,30 22,18 22,41" fill={`url(#${gradId})`} opacity="0.15" />
-        {/* Lower-right facet */}
-        <polygon points="40,30 22,41 22,18" fill={`url(#${gradId})`} opacity="0.28" />
-        {/* Centre horizontal facet line */}
-        <line x1="4" y1="18" x2="40" y2="18" stroke={`url(#${gradId})`} strokeWidth="0.6" opacity="0.5" />
-      </svg>
-
-      <div className="flex flex-col leading-none gap-0.5">
-        <span
-          className="font-serif font-bold tracking-tight"
-          style={{
-            fontSize: "20px",
-            background: "linear-gradient(to right, hsl(211,29%,45%), #93c5fd)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          311
-        </span>
-        <span
-          className="font-mono uppercase"
-          style={{
-            fontSize: "8.5px",
-            letterSpacing: "0.25em",
-            color: "#93c5fd",
-            opacity: 0.75,
-          }}
-        >
-          DESIGNS
-        </span>
-      </div>
-    </div>
+    <div
+      style={{
+        WebkitMaskImage: `url(${logoTrimmedPath})`,
+        maskImage: `url(${logoTrimmedPath})`,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "left center",
+        maskPosition: "left center",
+        background: "linear-gradient(to right, hsl(211,29%,45%), #93c5fd)",
+        opacity,
+        height: "40px",
+        width: "68px",
+      }}
+      role="img"
+      aria-label="311 Designs"
+    />
   );
 }
 
@@ -113,7 +75,7 @@ function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3 shadow-sm" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <LogoLockup gradId={GRAD_ID_NAV} />
+        <LogoLockup />
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
           <a href="#services" className="hover:text-primary transition-colors uppercase tracking-wider font-mono text-xs" data-testid="link-services">Services</a>
@@ -626,7 +588,7 @@ function Footer() {
   return (
     <footer className="bg-background border-t border-border py-12">
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <LogoLockup gradId={GRAD_ID_FOOTER} opacity={0.8} />
+        <LogoLockup opacity={0.8} />
         <p className="text-sm font-mono text-muted-foreground/60">
           &copy; {new Date().getFullYear()} 311 Designs. All rights reserved.
         </p>
