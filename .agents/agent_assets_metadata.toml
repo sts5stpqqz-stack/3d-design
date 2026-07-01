@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "5nO59pjG_c_O_eRODCSpD"
@@ -24,3 +23,9 @@ id = "HKDEFXZgJrqtliEbhNVKJ"
 uri = "file://artifacts/web/public/images/portfolio-fusion.png"
 type = "image"
 title = "Fusion360 Modelling"
+
+[[outputs]]
+id = "a4P2ja2F1YUwELFy9GZOm"
+uri = "file://attached_assets/311designs_logo_export.png"
+type = "image"
+title = "311 Designs Logo (gradient ring, transparent background)"
