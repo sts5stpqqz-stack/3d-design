@@ -35,3 +35,9 @@ id = "gdUjZQUqFyVzNzVwnIKw9"
 uri = "file://attached_assets/311designs-github-pages.tar.gz"
 type = "unspecified"
 title = "311 Designs — GitHub Pages build"
+
+[[outputs]]
+id = "7Au3ZZ8mAaOrxnma7z--s"
+uri = "file://311designs-github-pages.tar.gz"
+type = "unspecified"
+title = "311 Designs — GitHub Pages Export"
