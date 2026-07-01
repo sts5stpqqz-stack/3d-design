@@ -95,7 +95,7 @@ function Hero() {
               width: "fit-content",
             }}
           >
-            <div className="rounded-full flex items-center justify-center p-8 md:p-10" style={{ background: "hsl(var(--background))" }}>
+            <div className="rounded-full flex items-center justify-center p-5 md:p-6" style={{ background: "hsl(var(--background))" }}>
               <div
                 style={{
                   WebkitMaskImage: `url(${logoNoBgPath})`,
@@ -108,7 +108,7 @@ function Hero() {
                   maskPosition: "center",
                   background: "linear-gradient(to right, hsl(211 29% 45%), #93c5fd)",
                 }}
-                className="h-24 md:h-32 w-24 md:w-32"
+                className="h-36 md:h-48 w-36 md:w-48"
                 role="img"
                 aria-label="311 Designs Studio"
               />
