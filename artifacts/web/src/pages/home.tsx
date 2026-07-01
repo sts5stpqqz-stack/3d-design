@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Scan, Cpu, Printer, ChevronRight, ArrowRight, Layers, Lightbulb, PenTool, CheckCircle } from "lucide-react";
+import { Scan, Cpu, Printer, ChevronRight, ChevronLeft, ArrowRight, Layers, Lightbulb, PenTool, CheckCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -267,11 +267,104 @@ function Process() {
   );
 }
 
+function PortfolioCard({ work, index }: { work: { title: string; images: string[]; category: string }; index: number }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (work.images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % work.images.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [work.images.length]);
+
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrent(c => (c - 1 + work.images.length) % work.images.length);
+  };
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrent(c => (c + 1) % work.images.length);
+  };
+
+  return (
+    <motion.div
+      variants={ITEM}
+      className="group relative aspect-[4/3] overflow-hidden bg-card border border-border cursor-pointer"
+      data-testid={`card-portfolio-${index}`}
+    >
+      {work.images.map((img, i) => (
+        <img
+          key={i}
+          src={img}
+          alt={`${work.title} ${i + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 mix-blend-luminosity group-hover:mix-blend-normal ${
+            i === current ? "opacity-80 group-hover:opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {work.images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-background/60 hover:bg-background/90 p-1.5 rounded-full border border-border/50"
+            data-testid={`btn-portfolio-prev-${index}`}
+          >
+            <ChevronLeft className="w-4 h-4 text-white" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-background/60 hover:bg-background/90 p-1.5 rounded-full border border-border/50"
+            data-testid={`btn-portfolio-next-${index}`}
+          >
+            <ChevronRight className="w-4 h-4 text-white" />
+          </button>
+
+          <div className="absolute top-3 right-3 flex gap-1.5">
+            {work.images.map((_, i) => (
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-white scale-125" : "bg-white/40 hover:bg-white/70"
+                }`}
+                data-testid={`btn-portfolio-dot-${index}-${i}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      <div className="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+        <p className="text-primary text-xs font-mono uppercase tracking-wider mb-2 opacity-0 group-hover:opacity-100 transition-opacity delay-100 drop-shadow-md">
+          {work.category}
+        </p>
+        <h3 className="text-2xl font-serif font-bold text-white drop-shadow-lg">{work.title}</h3>
+      </div>
+    </motion.div>
+  );
+}
+
 function Portfolio() {
   const works = [
-    { title: "3D Scan", img: "/images/portfolio-scan.png", category: "Reverse Engineering" },
-    { title: "Custom Design", img: "/images/portfolio-cad.png", category: "Fusion 360" },
-    { title: "Fusion360 Modelling", img: "/images/portfolio-fusion.png", category: "Prototyping" },
+    {
+      title: "3D Scan",
+      images: ["/images/portfolio-scan.png", "/images/portfolio-cad.png", "/images/portfolio-fusion.png"],
+      category: "Reverse Engineering",
+    },
+    {
+      title: "Custom Design",
+      images: ["/images/portfolio-cad.png", "/images/portfolio-fusion.png", "/images/portfolio-scan.png"],
+      category: "Fusion 360",
+    },
+    {
+      title: "Fusion360 Modelling",
+      images: ["/images/portfolio-fusion.png", "/images/portfolio-scan.png", "/images/portfolio-cad.png"],
+      category: "Prototyping",
+    },
   ];
 
   return (
@@ -287,7 +380,7 @@ function Portfolio() {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={STAGGER}
           initial="initial"
           whileInView="whileInView"
@@ -295,23 +388,7 @@ function Portfolio() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {works.map((work, i) => (
-            <motion.div 
-              key={i}
-              variants={ITEM}
-              className="group cursor-pointer block relative aspect-[4/3] overflow-hidden bg-card border border-border"
-              data-testid={`card-portfolio-${i}`}
-            >
-              <img 
-                src={work.img} 
-                alt={work.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-primary text-xs font-mono uppercase tracking-wider mb-2 opacity-0 group-hover:opacity-100 transition-opacity delay-100 drop-shadow-md">{work.category}</p>
-                <h3 className="text-2xl font-serif font-bold text-white drop-shadow-lg">{work.title}</h3>
-              </div>
-            </motion.div>
+            <PortfolioCard key={i} work={work} index={i} />
           ))}
         </motion.div>
       </div>
