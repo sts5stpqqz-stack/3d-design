@@ -108,7 +108,7 @@ function Hero() {
                   maskPosition: "center",
                   background: "linear-gradient(to right, hsl(211 29% 45%), #93c5fd)",
                 }}
-                className="h-36 md:h-48 w-36 md:w-48"
+                className="h-44 md:h-60 w-44 md:w-60"
                 role="img"
                 aria-label="311 Designs Studio"
               />
