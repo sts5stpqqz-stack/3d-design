@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import logoPath from "@assets/311designs_logo.png";
+import logoNoBgPath from "@assets/311designs_logo_nobg.png";
 
 const FADE_UP = {
   initial: { opacity: 0, y: 30 },
@@ -86,7 +87,7 @@ function Hero() {
           transition={{ duration: 0.7 }}
           className="mb-8"
         >
-          <img src={logoPath} alt="311 Designs Studio" className="h-20 md:h-28 w-auto mx-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" />
+          <img src={logoNoBgPath} alt="311 Designs Studio" className="h-36 md:h-48 w-auto mx-auto drop-shadow-[0_0_20px_rgba(255,255,255,0.25)]" />
         </motion.div>
 
         <motion.div 
